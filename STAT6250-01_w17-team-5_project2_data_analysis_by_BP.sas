@@ -15,4 +15,47 @@ See included file for dataset properties
 * environmental setup;
 
 
+*Research Questions
 
+title1
+"Research Question:Which University scored highest ranking in Europe, North America, and Asia?"
+;
+
+title2
+"Rationale: Show top 10 university names associated among three continents."
+;
+
+ 
+
+title;
+
+
+
+title1
+"Research Question: Which University had the highest publication and is there any correlation between the University Rank?"
+;
+
+title2
+"Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
+;
+footnote1
+"Observation 1: "
+;
+
+*/
+Methodology: 
+;
+
+title;
+footnote;
+
+title1
+"Research Question: How many students are International student in Europe, North America, and Asia?"
+;
+
+title2
+"Rationale:Show how many students get education outside their native country.  "
+;
+
+
+title;
