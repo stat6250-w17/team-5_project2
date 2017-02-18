@@ -56,4 +56,114 @@ This dataset is available on kaggle.com. It was downloaded as a Zip file, which 
 
 [Unique ID Schema]: Composite Key for the following IDs: World_Rank, University_Name, total_score, and year.
 ;
+
 * setup environmental parameters;
+%let inputDataset1URL =
+https://github.com/stat6250/team-5_project2/blob/master/Data/cwur-edited.xls?raw=true
+;
+%let inputDataset1Type = XLS;
+%let inputDataset1DSN = cwurData_raw;
+
+%let inputDataset2URL =
+https://github.com/stat6250/team-5_project2/blob/master/Data/timesData-edited.xls?raw=true
+;
+%let inputDataset2Type = XLS;
+%let inputDataset2DSN = timesData_raw;
+
+%let inputDataset3URL =
+https://github.com/stat6250/team-5_project2/blob/master/Data/shanghaiData-edited.xls?raw=true
+;
+%let inputDataset3Type = XLS;
+%let inputDataset3DSN = shanghaiData_raw;
+
+
+
+* load raw datasets over the wire, if they doesn't already exist;
+%macro loadDataIfNotAlreadyAvailable(dsn,url,filetype);
+    %put &=dsn;
+    %put &=url;
+    %put &=filetype;
+    %if
+        %sysfunc(exist(&dsn.)) = 0
+    %then
+        %do;
+            %put Loading dataset &dsn. over the wire now...;
+            filename tempfile TEMP;
+            proc http
+                method="get"
+                url="&url."
+                out=tempfile
+                ;
+            run;
+            proc import
+                file=tempfile
+                out=&dsn.
+                dbms=&filetype.;
+            run;
+            filename tempfile clear;
+        %end;
+    %else
+        %do;
+            %put Dataset &dsn. already exists. Please delete and try again.;
+        %end;
+%mend;
+%loadDataIfNotAlreadyAvailable(
+    &inputDataset1DSN.,
+    &inputDataset1URL.,
+    &inputDataset1Type.
+)
+%loadDataIfNotAlreadyAvailable(
+    &inputDataset2DSN.,
+    &inputDataset2URL.,
+    &inputDataset2Type.
+)
+%loadDataIfNotAlreadyAvailable(
+    &inputDataset3DSN.,
+    &inputDataset3URL.,
+    &inputDataset3Type.
+)
+
+
+
+* sort and check raw datasets for duplicates with respect to their unique ids,
+  removing blank rows, if needed;
+  
+proc sort
+        nodupkey
+        data=cwurData_raw
+        dupout=cwurData_raw_dups
+        out=cwurData_raw_sorted
+    ;
+    by
+        world_rank
+        institution
+        year
+    ;
+run;
+
+proc sort
+        nodupkey
+        data=timesData_raw
+        dupout=timesData_raw_dups
+        out=timesData_raw_sorted
+    ;
+    by
+        world_rank
+        university_name
+        year
+    ;
+run;
+
+proc sort
+        nodupkey
+        data=shanghaiData_raw
+        dupout=shanghaiData_raw_dups
+        out=shanghaiData_raw_sorted
+    ;
+    by
+        world_rank
+		      university_name
+	      	total_score
+      		year
+    ;
+run;
