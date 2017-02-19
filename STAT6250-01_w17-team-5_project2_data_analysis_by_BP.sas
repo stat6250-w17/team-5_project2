@@ -47,6 +47,12 @@ title1
 title2
 "Rationale: Show top 10 university names associated among three continents."
 ;
+
+proc freq data=world_rank_file;
+	table country
+	format country continent;
+run;
+      
 title;
 
 title1
@@ -62,7 +68,35 @@ footnote1
 */
 Methodology: 
 ;
-
+proc means min q1 median q3 max data=world_rank_file;
+    var
+        university_rank
+       total_score
+    ;
+run;
+proc format;
+    value world_rank_university
+        low-<.39="Rank 1"
+        .39-<.69="Rank 2"
+        .69-<.86="Rank 3"
+        .86-high="Rank 4"
+    ;
+    
+run;
+proc freq data=shanghai_Data_analytic_file;
+    table
+             national_rank
+            *total_score
+            / missing norow nocol nopercent
+    ;
+    where
+        not(missing(national_rank))
+    ;
+    format
+        university_name World_rank
+       hci pcp
+    ;
+run;
 title;
 footnote;
 
