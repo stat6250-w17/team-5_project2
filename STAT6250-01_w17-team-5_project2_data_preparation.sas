@@ -136,7 +136,7 @@ proc sort
     ;
     by
         world_rank
-        institution
+        university_name
         year
     ;
 run;
@@ -162,8 +162,8 @@ proc sort
     ;
     by
         world_rank
-		      university_name
-	      	total_score
-      		year
+	university_name
+	total_score
+      	year
     ;
 run;
