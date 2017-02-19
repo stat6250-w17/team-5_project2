@@ -5,7 +5,7 @@
 
 *
 This file uses the following analytic dataset to address several research
-questions regarding World's University Ranking trends from year 2012 to 2015
+questions regarding Worlds University Ranking trends over the years
 Dataset Name: world_rank_analytic_file created in external file
 STAT6250-01_w17-team-5_project2_data_preparation.sas, which is assumed to be
 in the same directory as this file
@@ -16,7 +16,7 @@ See included file for dataset properties
 * environmental setup;
 
 %let dataPrepFileName = STAT6250-01_w17-team-5_project2_data_preparation.sas;
-%let sasUEFilePrefix = world_rank_file;
+%let sasUEFilePrefix = team-5_project2;
 
 * load external file that generates analytic dataset world_rank_analytic_file 
 using a system path dependent on the host operating system, after setting the 
@@ -40,18 +40,28 @@ relative file import path to the current directory, if using Windows;
 
 ************************MF Research Questions ***********************************
 title1
-"Research Question: Analyze which are top 5 countries have highest total_score universities every year?"
+"Research Question 1: Analyze which are top 5 countries have highest total_score universities every year?"
 ;
 
 title2
 "Rationale: This analysis will help identify the superpower country for higher education. This analysis will also help understand the factors that help achieve the top spot."
 ;
+
 footnote1
 "Observation 1:"
 ;
 footnote1
 "Observation 2:"
 ;
+/*
+Methodology: 
+*/
+
+run;
+title;
+footnote;
+
+
 
 title1
 "Research Question: Which universities have a consistent ranking over the years?"
@@ -66,6 +76,14 @@ footnote1
 footnote1
 "Observation 2:"
 ;
+/*
+Methodology: 
+*/
+
+run;
+title;
+footnote;
+
 
 title1
 "Research Question: Analyze top ranking universities in attributes of teaching, research, citations, international, income?"
@@ -81,3 +99,9 @@ footnote1
 footnote1
 "Observation 2:"
 ;
+/*
+Methodology: 
+*/
+run;
+title;
+footnote;
