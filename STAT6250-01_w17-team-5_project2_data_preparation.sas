@@ -167,3 +167,31 @@ proc sort
       		year
     ;
 run;
+
+
+
+*Converting world_rank variable type from numeric to character;
+
+data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
+set cwurData_raw_sorted;
+world_rank_char=put(world_rank, 1.);
+drop world_rank;
+run;
+
+*Converting national_rank variable type from numeric to character;
+
+data cwurData_raw_sorted(rename=(national_rank_char=national_rank));
+set cwurData_raw_sorted;
+national_rank_char=put(national_rank, 1.);
+drop national_rank;
+run;
+
+
+*Combining datasets CWUR and ShanghaiData vertically;
+
+data CWUR_Shanghai_Data;
+	set cwurData_raw_sorted shanghaiData_raw_sorted;
+run;
+
+proc print data=CWUR_Shanghai_Data noobs;
+run;
