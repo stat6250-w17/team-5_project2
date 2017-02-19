@@ -162,9 +162,9 @@ proc sort
     ;
     by
         world_rank
-		      university_name
-	      	total_score
-      		year
+	university_name
+	total_score
+     	year
     ;
 run;
 
@@ -195,3 +195,32 @@ run;
 
 proc print data=CWUR_Shanghai_Data noobs;
 run;
+
+
+* build analytic dataset from vertically merged sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data CWUR_Shanghai_analytic_file;
+    retain
+    	world_rank
+		university_name
+		country
+		alumni
+		publications
+		total_score
+		year      
+    ;
+    keep
+        world_rank
+		university_name
+		country
+		alumni
+		publications
+		total_score
+		year
+    ;
+    set 
+		CWUR_Shanghai_Data
+	;
+run;
+
