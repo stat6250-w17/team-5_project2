@@ -203,21 +203,21 @@ research questions in corresponding data-analysis files;
 data CWUR_Shanghai_analytic_file;
     retain
     	world_rank
-		university_name
-		country
-		alumni
-		publications
-		total_score
-		year      
+	university_name
+	country
+	alumni
+	publications
+	total_score
+	year      
     ;
     keep
         world_rank
-		university_name
-		country
-		alumni
-		publications
-		total_score
-		year
+	university_name
+	country
+	alumni
+	publications
+	total_score
+	year
     ;
     set 
 		CWUR_Shanghai_Data
