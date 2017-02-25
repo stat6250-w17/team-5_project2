@@ -31,7 +31,9 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
-************************BP Research Questions ***********************************
+***********************************************************
+*			BP Analysis begins Here
+***********************************************************
 
 title1
 "Research Question 1:Which University's scored highest ranking incompare to organizational population?"
@@ -41,7 +43,6 @@ title2
 ;
 
 title;
-
 
 title1
 "Research Question2: Which University had the highest publication and is there any correlation between the University Rank?"
