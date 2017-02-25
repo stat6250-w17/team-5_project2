@@ -33,47 +33,33 @@ relative file import path to the current directory, if using Windows;
 
 ************************BP Research Questions ***********************************
 
-*Research Questions
-
 title1
-"Research Question:Which University scored highest ranking in Europe, North America, and Asia?"
-;
+"Research Question 1:Which University's scored highest ranking incompare to organizational population?"
 
 title2
-"Rationale: Show top 10 university names associated among three continents."
+"Rationale: "
 ;
-
- 
 
 title;
 
 
-
 title1
-"Research Question: Which University had the highest publication and is there any correlation between the University Rank?"
+"Research Question2: Which University had the highest publication and is there any correlation between the University Rank?"
 ;
 
 title2
 "Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
-;
-footnote1
-"Observation 1: "
-;
-
-*/
-Methodology: 
 ;
 
 title;
 footnote;
 
 title1
-"Research Question: How many students are International student in Europe, North America, and Asia?"
+"Research Question3: What impacts the most in the University Ranking scheme?"
 ;
 
 title2
-"Rationale:Show how many students get education outside their native country.  "
+"Rationale:  "
 ;
-
 
 title;
