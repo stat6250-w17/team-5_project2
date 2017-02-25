@@ -236,7 +236,7 @@ least number of columns and minimal cleaning/transformation needed to address
 research questions in corresponding data-analysis files;
 data CWUR_Times_analytic_file;
 retain
-    world_rank
+        world_rank
 	university_name
 	country
         total_score 
@@ -247,7 +247,6 @@ retain
 	income
     ;
     keep
-        world_rank
 	world_rank
 	university_name
 	country
