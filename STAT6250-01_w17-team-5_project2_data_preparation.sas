@@ -168,8 +168,6 @@ proc sort
     ;
 run;
 
-
-
 *Converting world_rank variable type from numeric to character;
 
 data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
@@ -196,13 +194,22 @@ run;
 proc print data=CWUR_Shanghai_Data noobs;
 run;
 
+*Combining datasets CWUR and ShanghaiData horizontally;
+
+data CWUR_Times_Data;
+   merge cwurData_raw_sorted timesData_raw_sorted;
+   by world_rank;
+run;
+
+proc print data=CWUR_Times_Data noobs;
+run;
 
 * build analytic dataset from vertically merged sorted datasets with the 
 least number of columns and minimal cleaning/transformation needed to address 
 research questions in corresponding data-analysis files;
 data CWUR_Shanghai_analytic_file;
     retain
-    	world_rank
+        world_rank
 	university_name
 	country
 	alumni
@@ -224,3 +231,34 @@ data CWUR_Shanghai_analytic_file;
 	;
 run;
 
+* build analytic dataset from horizontally merged sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data CWUR_Times_analytic_file;
+retain
+    world_rank
+	university_name
+	country
+        total_score 
+	quality_of_faculty
+	research
+	citations
+	international
+	income
+    ;
+    keep
+        world_rank
+	world_rank
+	university_name
+	country
+        total_score 
+	quality_of_faculty
+	research
+	citations
+	international
+	income
+    ;
+    set 
+		CWUR_Times_Data
+	;
+run;
