@@ -55,6 +55,29 @@ Methodology:
 */
 
 
+/* sort the data in ascending order of world rank */
+proc sort data=CWUR_Shanghai_analytic_file out=sorted_CWUR_Shanghai;
+	BY world_rank;
+run;
+
+data sorted_CWUR_Shanghai;
+length world_rank $3;
+run;
+
+/*
+proc contents data=sorted_CWUR_Shanghai;
+run;
+*/
+
+/*print records for top 100 universities */
+proc print data=sorted_CWUR_Shanghai (obs=100);
+	var world_rank university_name country year;
+	where year=2015;
+run;
+
+*print only the countries of top 100 universities;
+
+
 run;
 title;
 footnote;
