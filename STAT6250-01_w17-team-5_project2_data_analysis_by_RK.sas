@@ -38,6 +38,9 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
+*******************************************************************************;
+************************Research Question 1************************************;
+*******************************************************************************;
 
 title1
 "Research Question 1. Which countries performed the best among top 100 Universities?"
@@ -83,6 +86,9 @@ title;
 footnote;
 
 
+*******************************************************************************;
+************************Research Question 2************************************;
+*******************************************************************************;
 
 title1
 "Research Question 2. What is the range of total score for high (1-100), medium (101-400) and low (401-1000) ranked Universities?"
@@ -128,7 +134,9 @@ run;
 title;
 footnote;
 
-
+*******************************************************************************;
+************************Research Question 3************************************;
+*******************************************************************************;
 
 title1
 "Research Question 3. Does the % of publications done by the students in a University correlates with the Alumni Employment %?"
