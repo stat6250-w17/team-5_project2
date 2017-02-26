@@ -167,35 +167,38 @@ proc sort
     	;
 run;
 
-proc print data=shanghaiData_raw_sorted noobs;
+* build analytic dataset from sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data Shanghai_analytic;
+	keep 
+		world_rank
+		university_name
+		year
+		total_score 
+		award
+		alumni
+		hici
+		publications
+		;
+    	set 
+		shanghaiData_raw_sorted
+		;
 run;
-
 
 * build analytic dataset from sorted datasets with the 
 least number of columns and minimal cleaning/transformation needed to address 
 research questions in corresponding data-analysis files;
-data Shanghai_analytic_file;
-	retain
-	    world_rank
-		university_name
-		total_score 
-		award
-		hici
-		ns
-		publication
-		pcp
-		year
-		;
-    keep
+data TimeData_analytic;
+	keep
 		world_rank
 		university_name
-		total_score 
-		research
-		student_staff_ratio
 		year
-	    	;
-    set 
-		shanghaiData_raw_sorted
+		total_score 
+		student_staff_ratio
+		;
+    	set 
+		timesData_raw_sorted
 		;
 run;
 
