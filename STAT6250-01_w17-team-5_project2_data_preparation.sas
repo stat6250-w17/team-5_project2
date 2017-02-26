@@ -133,12 +133,12 @@ proc sort
         data=cwurData_raw
         dupout=cwurData_raw_dups
         out=cwurData_raw_sorted
-    ;
+    	;
     by
         world_rank
         university_name
         year
-    ;
+    	;
 run;
 
 proc sort
@@ -146,12 +146,12 @@ proc sort
         data=timesData_raw
         dupout=timesData_raw_dups
         out=timesData_raw_sorted
-    ;
+    	;
     by
         world_rank
         university_name
         year
-    ;
+    	;
 run;
 
 proc sort
@@ -159,13 +159,44 @@ proc sort
         data=shanghaiData_raw
         dupout=shanghaiData_raw_dups
         out=shanghaiData_raw_sorted
-    ;
+    	;
     by
         world_rank
 	university_name
-	total_score
      	year
-    ;
+    	;
+run;
+
+proc print data=shanghaiData_raw_sorted noobs;
+run;
+
+
+* build analytic dataset from sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data Shanghai_analytic_file;
+	retain
+	    world_rank
+		university_name
+		total_score 
+		award
+		hici
+		ns
+		publication
+		pcp
+		year
+		;
+    keep
+		world_rank
+		university_name
+		total_score 
+		research
+		student_staff_ratio
+		year
+	    	;
+    set 
+		shanghaiData_raw_sorted
+		;
 run;
 
 *Converting world_rank variable type from numeric to character;
