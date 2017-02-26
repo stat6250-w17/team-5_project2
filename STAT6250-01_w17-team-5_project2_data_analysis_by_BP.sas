@@ -38,10 +38,9 @@ relative file import path to the current directory, if using Windows;
 title1
 "Research Question 1:Which University's scored highest ranking incompare to organizational population?"
 
-title2
-"Rationale: "
-;
-
+proc freq data=TimeData_analytic;
+	table university_name total_score;
+run;
 title;
 
 title1
