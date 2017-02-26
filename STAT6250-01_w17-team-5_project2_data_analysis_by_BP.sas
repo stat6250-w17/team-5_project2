@@ -1,15 +1,9 @@
-*******************************************************************************;
-**************** 80-character banner for column width reference ***************;
-* (set window width to banner width to calibrate line length to 80 characters *;
-*******************************************************************************;
-*
 This file uses the following analytic dataset to address several research
 questions regarding World Ranking University.
 
 Dataset Name: world_rank_analytic_file created in external file
 STAT6250-01_w17-team-5_project2_data_preparation.sas, which is assumed to be
 in the same directory as this file
-
 See included file for dataset properties
 ;
 
@@ -38,4 +32,39 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
+***********************************************************
+*			BP Analysis begins Here
+***********************************************************
 
+title1
+"Research Question 1:Which University's scored highest ranking incompare to organizational population?"
+
+proc freq data=TimeData_analytic;
+	table university_name total_score;
+run;
+title;
+
+title1
+"Research Question2: Which University had the highest publication and is there any correlation between the University Rank?"
+;
+proc freq data=Shanghai_analytic;
+	table university_name publications;
+run;
+title2
+"Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
+;
+
+title;
+footnote;
+
+title1
+"Research Question3: What impacts the most in the University Ranking scheme?"
+;
+proc freq data=Shanghai_analytic;
+	table university_name award;
+run;
+title2
+"Rationale:  "
+;
+
+title;

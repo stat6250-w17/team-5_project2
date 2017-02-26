@@ -1,4 +1,4 @@
-*******************************************************************************;
+﻿*******************************************************************************;
 **************** 80-character banner for column width reference ***************;
 * (set window width to banner width to calibrate line length to 80 characters *;
 *******************************************************************************;
@@ -133,12 +133,12 @@ proc sort
         data=cwurData_raw
         dupout=cwurData_raw_dups
         out=cwurData_raw_sorted
-    ;
+    	;
     by
         world_rank
         university_name
         year
-    ;
+    	;
 run;
 
 proc sort
@@ -146,12 +146,12 @@ proc sort
         data=timesData_raw
         dupout=timesData_raw_dups
         out=timesData_raw_sorted
-    ;
+    	;
     by
         world_rank
         university_name
         year
-    ;
+    	;
 run;
 
 proc sort
@@ -159,11 +159,141 @@ proc sort
         data=shanghaiData_raw
         dupout=shanghaiData_raw_dups
         out=shanghaiData_raw_sorted
-    ;
+    	;
     by
         world_rank
 	university_name
+     	year
+    	;
+run;
+
+* build analytic dataset from sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data Shanghai_analytic;
+	keep 
+		world_rank
+		university_name
+		year
+		total_score 
+		award
+		alumni
+		hici
+		publications
+		;
+    	set 
+		shanghaiData_raw_sorted
+		;
+run;
+
+* build analytic dataset from sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data TimeData_analytic;
+	keep
+		world_rank
+		university_name
+		year
+		total_score 
+		student_staff_ratio
+		;
+    	set 
+		timesData_raw_sorted
+		;
+run;
+
+*Converting world_rank variable type from numeric to character;
+
+data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
+set cwurData_raw_sorted;
+world_rank_char=put(world_rank, 1.);
+drop world_rank;
+run;
+
+*Converting national_rank variable type from numeric to character;
+
+data cwurData_raw_sorted(rename=(national_rank_char=national_rank));
+set cwurData_raw_sorted;
+national_rank_char=put(national_rank, 1.);
+drop national_rank;
+run;
+
+
+*Combining datasets CWUR and ShanghaiData vertically;
+
+data CWUR_Shanghai_Data;
+	set cwurData_raw_sorted shanghaiData_raw_sorted;
+run;
+
+proc print data=CWUR_Shanghai_Data noobs;
+run;
+
+*Combining datasets CWUR and ShanghaiData horizontally;
+
+data CWUR_Times_Data;
+   merge cwurData_raw_sorted timesData_raw_sorted;
+   by world_rank;
+run;
+
+proc print data=CWUR_Times_Data noobs;
+run;
+
+* build analytic dataset from vertically merged sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data CWUR_Shanghai_analytic_file;
+    retain
+        world_rank
+	university_name
+	country
+	alumni
+	publications
 	total_score
+	year      
+    ;
+    keep
+        world_rank
+	university_name
+	country
+	alumni
+	publications
+	total_score
+	year
+    ;
+    set 
+		CWUR_Shanghai_Data
+	;
+run;
+
+* build analytic dataset from horizontally merged sorted datasets with the 
+least number of columns and minimal cleaning/transformation needed to address 
+research questions in corresponding data-analysis files;
+data CWUR_Times_analytic_file;
+retain
+        world_rank
+	university_name
+	country
+        total_score 
+	quality_of_faculty
+	research
+	citations
+	international
+	income
+        year
+    ;
+    keep
+	world_rank
+	university_name
+	country
+        total_score 
+	quality_of_faculty
+	research
+	citations
+	international
+	income
       	year
     ;
+    set 
+		CWUR_Times_Data
+	;
 run;
