@@ -101,6 +101,30 @@ Methodology:
 */
 
 
+*proc format to put world ranks in bins and print them;
+
+proc format;
+	value $world_rank
+		low-100="HIGH"
+		101-400="MEDIUM"
+		401-high="LOW"
+	;
+run;
+
+proc print data=CWUR_Shanghai_analytic_file;
+	format UniversityWorldRanking $world_rank.;
+run;
+
+/* Calculate the Min and Max values for scores using formatted rankings and print them to analyze the range*/
+proc means data=CWUR_Shanghai_analytic_file min max range;
+	var total_score university_name year world_rank;
+	format UniversityWorldRanking $world_rank.;
+	output out=by_rank_score;
+run;
+
+proc print data=by_rank_score;
+run;
+
 run;
 title;
 footnote;
