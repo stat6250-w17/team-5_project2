@@ -46,7 +46,9 @@ title;
 title1
 "Research Question2: Which University had the highest publication and is there any correlation between the University Rank?"
 ;
-
+proc freq data=Shanghai_analytic;
+	table university_name publications;
+run;
 title2
 "Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
 ;
@@ -57,7 +59,9 @@ footnote;
 title1
 "Research Question3: What impacts the most in the University Ranking scheme?"
 ;
-
+proc freq data=Shanghai_analytic;
+	table university_name award;
+run;
 title2
 "Rationale:  "
 ;
