@@ -1,4 +1,4 @@
-*******************************************************************************;
+﻿*******************************************************************************;
 **************** 80-character banner for column width reference ***************;
 * (set window width to banner width to calibrate line length to 80 characters *;
 *******************************************************************************;
@@ -279,6 +279,7 @@ retain
 	citations
 	international
 	income
+        year
     ;
     keep
 	world_rank
@@ -290,6 +291,7 @@ retain
 	citations
 	international
 	income
+      	year
     ;
     set 
 		CWUR_Times_Data
