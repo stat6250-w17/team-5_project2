@@ -167,6 +167,11 @@ Methodology:Proc Freq to create cross-tab of three variables to see
 correlation between them.
 */
 
+proc freq 
+	data=cwurData_raw_sorted;
+	Table 
+	    alumni*publications*university_name / norow nocol;
+run;
 
 title;
 footnote;
