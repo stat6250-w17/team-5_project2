@@ -59,19 +59,19 @@ This dataset is available on kaggle.com. It was downloaded as a Zip file, which 
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-5_project2/blob/master/Data/cwur-edited.xls?raw=true
+https://github.com/stat6250/team-5_project2/blob/master/data/cwur-edited.xls?raw=true
 ;
 %let inputDataset1Type = XLS;
 %let inputDataset1DSN = cwurData_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-5_project2/blob/master/Data/timesData-edited.xls?raw=true
+https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xls?raw=true
 ;
 %let inputDataset2Type = XLS;
 %let inputDataset2DSN = timesData_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-5_project2/blob/master/Data/shanghaiData-edited.xls?raw=true
+https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xls?raw=true
 ;
 %let inputDataset3Type = XLS;
 %let inputDataset3DSN = shanghaiData_raw;
