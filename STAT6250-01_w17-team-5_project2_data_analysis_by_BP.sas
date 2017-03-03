@@ -49,10 +49,10 @@ title1
 "Research Question 1:Which University's scored highest ranking incompare to organizational population? Is there any correlation between highest total_score of Univesity and student to staff ratio?"
 ;
 title2
-"Rationale: This will help investigate  scheme."
+"Rationale: This will help investigate and determine the most contributing factor for the university ranking scheme."
 ;
 */
-Methodology: Initially, proc print was used to evalauate overall raw data. 
+Methodology: Initially, proc print was used to evaluate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
 */
 ;
@@ -62,7 +62,7 @@ run;
 
 title "Is there any correlation between University's highest total_score and student to staff ratio?" ;
 footnote1
-"Observation1: Yes, plots show there is a very strong correlation"
+"Observation1: Yes, plots reveal there are strong correlations between highest total_score and student to staff ratio."
 ;
 
 title;
@@ -79,7 +79,7 @@ proc freq data=Shanghai_analytic;
 run;
 
 footnote1
-"Observation1: Yes, variable plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
+"Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
 ;
 
 title2
