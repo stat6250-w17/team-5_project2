@@ -86,7 +86,6 @@ title2
 "Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
 ;
 
-
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
@@ -97,6 +96,7 @@ footnote;
 *******************************************************************************
 *					Research Question # 3
 *******************************************************************************
+;
 title1
 "Research Question 3: What impacts the most in the University Ranking scheme? Which variable is the best predictor for the highest Univesity Rank(i.e hici,award,or alumni)?"
 ;
