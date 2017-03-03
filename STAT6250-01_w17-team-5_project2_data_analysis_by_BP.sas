@@ -19,7 +19,7 @@ See included file for dataset properties
 %let dataPrepFileName = STAT6250-01_w17-team-5_project2_data_preparation.sas;
 %let sasUEFilePrefix = team-5_project2;
 
-* load external file that generates analytic dataset HospInfo_analytic_file 
+* load external file that generates analytic dataset world_rank_analytic_file 
 using a system path dependent on the host operating system, after setting 
 the relative file import path to the current directory, if using Windows;
 
