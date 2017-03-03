@@ -55,14 +55,16 @@ title2
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
 */
+;
 proc freq data=TimeData_analytic;
 	table university_name total_score;
 run;
+
 title "Is there any correlation between University's highest total_score and student to staff ratio?" ;
 footnote1
 "Observation1: Yes, plots show there is a very strong correlation"
 ;
-run;
+
 title;
 footnote;
 *******************************************************************************
@@ -79,8 +81,7 @@ run;
 footnote1
 "Observation1: Yes, variable plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
 ;
-run;
-quit;
+
 title2
 "Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
 ;
@@ -107,7 +108,7 @@ run;
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
 */
-
+;
 footnote1
 "Observation 1: hici is based on the number of highly cited researchers"
 ;
