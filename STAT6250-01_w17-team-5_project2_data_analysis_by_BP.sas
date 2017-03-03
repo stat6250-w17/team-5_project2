@@ -40,8 +40,6 @@ the relative file import path to the current directory, if using Windows;
 %setup;
 
 ******************************************************************************
-*						BP Analysis begins Here
-*
 *						Research Question #1
 ******************************************************************************
 ;
@@ -51,6 +49,13 @@ title1
 title2
 "Rationale: This will help investigate and determine the most contributing factor for the university ranking scheme."
 ;
+title "Is there any correlation between University's highest total_score and student to staff ratio?"
+;
+
+footnote1
+"Observation1: Yes, plots reveal there are strong correlations between highest total_score and student to staff ratio."
+;
+
 */
 Methodology: Initially, proc print was used to evaluate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
@@ -59,11 +64,6 @@ Later once most contributing variables were determined. Various data plotting te
 proc freq data=TimeData_analytic;
 	table university_name total_score;
 run;
-
-title "Is there any correlation between University's highest total_score and student to staff ratio?" ;
-footnote1
-"Observation1: Yes, plots reveal there are strong correlations between highest total_score and student to staff ratio."
-;
 
 title;
 footnote;
@@ -74,23 +74,21 @@ footnote;
 title1
 "Research Question 2: Does highest total_score unniversity exhibits also largest publication?"
 ;
-proc freq data=Shanghai_analytic;
-	table university_name publications;
-run;
-
-footnote1
-"Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
-;
-
 title2
 "Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
 ;
-
+footnote1
+"Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
+;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
 */
 ; 
+proc freq data=Shanghai_analytic;
+	table university_name publications;
+run;
+
 title;
 footnote;
 *******************************************************************************
@@ -100,17 +98,20 @@ footnote;
 title1
 "Research Question 3: What impacts the most in the University Ranking scheme? Which variable is the best predictor for the highest Univesity Rank(i.e hici,award,or alumni)?"
 ;
-proc freq data=Shanghai_analytic;
-	table university_name award;
-run;
-
+title2
+"Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
+;
+footnote1
+"Observation 1: hici is based on the number of highly cited researchers"
+;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
 */
 ;
-footnote1
-"Observation 1: hici is based on the number of highly cited researchers"
-;
+proc freq data=Shanghai_analytic;
+	table university_name award;
+run;
+
 title;
 footnote;
