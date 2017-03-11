@@ -109,6 +109,12 @@ title2
 footnote1
 "Observation 1: hici is based on the number of highly cited researchers"
 ;
+footnote2
+"Observation2: Correlation plot indicates 87.10% correlation between Total_score and hici, 83.2% between Total_score and awards, 76.92 between total_score and alumni. Linear Regression plots shows 69.20% adjusted RSquare (indicates linearly fitted)."
+;
+footnote3
+"Observation3: Correlation plot indicates 62% correlation between Total_score and publication. Linear Regression indicates 39.3% adjusted Rsquare."
+;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
