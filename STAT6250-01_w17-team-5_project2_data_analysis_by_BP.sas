@@ -49,18 +49,18 @@ title1
 title2
 "Rationale: This will help investigate and determine the most contributing factor for the university ranking scheme."
 ;
-title "Is there any correlation between University's highest total_score and student to staff ratio?"
+title3 "Is there any correlation between University's highest total_score and student to staff ratio?"
 ;
-
 footnote1
-"Observation1: Yes, plots reveal there are strong correlations between highest total_score and student to staff ratio."
+"Observation1: Correlation plots reveal there are no strong correlations between highest total_score and student to staff ratio."
 ;
 footnote2
-"Observation2: Correlation plot indicates 25% correlation between Total_score and student to staff ratio. Linear Regression plots shows 6.50% adjusted RSquare (indicates linearly fitted)."
+"Observation2: Correlation plot indicates 25% correlation between Total_score and student to staff ratio. Linear Regression plots shows not a strong coefficient of determination value(6.50%)."
 ;
 */
 Methodology: Initially, proc print was used to evaluate overall raw data. 
-Later once most contributing variables were determined. Various data plotting techniques are used.
+Later once most contributing variables were determined. Data plotting techniques 
+such as correlation and linear regression plots were used to anser this question.
 */
 ;
 proc freq data=TimeData_analytic;
@@ -77,17 +77,18 @@ title1
 "Research Question 2: Does highest total_score unniversity exhibits also largest publication?"
 ;
 title2
-"Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
+"Rationale: Perform exploratory analysis to reveal from data, if an university does more research and publishes then they rank highest."
 ;
 footnote1
 "Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
 ;
 footnote2
-"Observation2: Correlation plot indicates 83.20% correlation between Total_score and student being awarded highest honorary awards. Linear Regression plots shows 69.20% adjusted RSquare (indicates linearly fitted)."
+"Observation2: Correlation plot indicates 83.20% correlation between Total_score and student being awarded highest honorary awards. Linear Regression plots shows a strong coefficient of determination value (69.20%)."
 ;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
-Later once most contributing variables were determined. Various data plotting techniques are used.
+Later once most contributing variables were determined. Data plotting techniques 
+such as correlation and linear regression plots were used used to answer this question.
 */
 ; 
 proc freq data=Shanghai_analytic;
@@ -104,10 +105,10 @@ title1
 "Research Question 3: What impacts the most in the University Ranking scheme? Which variable is the best predictor for the highest Univesity Rank(i.e hici,award,or alumni)?"
 ;
 title2
-"Rationale: Reveal from data, if an university does more research and publishes then they rank highest."
+"Rationale: Determine the most contributing factor for the university ranking scheme."
 ;
 footnote1
-"Observation 1: hici is based on the number of highly cited researchers"
+"Observation 1: Analysis shows that the strongest predictor of universities highest ranking was based on the number of highly cited researchers."
 ;
 footnote2
 "Observation2: Correlation plot indicates 87.10% correlation between Total_score and hici, 83.2% between Total_score and awards, 76.92 between total_score and alumni. Linear Regression plots shows 69.20% adjusted RSquare (indicates linearly fitted)."
@@ -117,7 +118,8 @@ footnote3
 ;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
-Later once most contributing variables were determined. Various data plotting techniques are used.
+Later once most contributing variables were determined. Data plotting techniques 
+such as correlation,linear regression, and sgsscatter plots were used to answer this question.
 */
 ;
 proc freq data=Shanghai_analytic;
