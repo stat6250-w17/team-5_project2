@@ -55,7 +55,9 @@ title "Is there any correlation between University's highest total_score and stu
 footnote1
 "Observation1: Yes, plots reveal there are strong correlations between highest total_score and student to staff ratio."
 ;
-
+footnote2
+"Observation2: Correlation plot indicates 25% correlation between Total_score and student to staff ratio. Linear Regression plots shows 6.50% adjusted RSquare (indicates linearly fitted)."
+;
 */
 Methodology: Initially, proc print was used to evaluate overall raw data. 
 Later once most contributing variables were determined. Various data plotting techniques are used.
@@ -79,6 +81,9 @@ title2
 ;
 footnote1
 "Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
+;
+footnote2
+"Observation2: Correlation plot indicates 83.20% correlation between Total_score and student being awarded highest honorary awards. Linear Regression plots shows 69.20% adjusted RSquare (indicates linearly fitted)."
 ;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
