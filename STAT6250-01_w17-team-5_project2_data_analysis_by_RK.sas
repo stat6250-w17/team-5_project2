@@ -149,17 +149,17 @@ footnote;
 *******************************************************************************;
 
 title1
-"Research Question 3. Does the % of publications done by the students in a University correlates with the Alumni Employment %?"
+"Research Question 3. Does the % of publications done by the students correlates with the Alumni Employment %?"
 ;
 title2
 "Rationale: This data can be useful for the students to identify to what extent being a part of a publication helps in getting a job. "
 ;
 
 footnote1
-"Observation 1 :  "
+"Observation 1 : From the results it can be noticed that the alumni employment rate shows an increase with the number of publications. "
 ;
 footnote2
-"Observation 2 : "
+"Observation 2 : Going further, more analysis would be required to conclude which all factors determine alumni employment % rather than just the publications rate. "
 ;
 
 /*
@@ -167,11 +167,20 @@ Methodology:Proc Freq to create cross-tab of three variables to see
 correlation between them.
 */
 
+proc summary data=CWUR_Shanghai_analytic_file print;
+	var alumni publications;
+	class publications;
+output out=alum_pub
+	mean=AvgAlumni;
+run;
+
+/*
 proc freq 
 	data=cwurData_raw_sorted;
 	Table 
 	    alumni*publications*university_name / norow nocol;
 run;
+*/
 
 title;
 footnote;
