@@ -38,6 +38,7 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
+
 *******************************************************************************;
 ************************Research Question 1************************************;
 *******************************************************************************;
@@ -56,32 +57,27 @@ footnote2
 "Observation 2: Another observation is that USA is the highest country with the best ranking universities in top 100"
 
 /*
-Methodology: Changed the length of the world_rank variable to 3 so it can accomodate
-all the rankings. Print top 100 universities of 2015 from the dataset of CWUR. 
+Methodology: Changed the length of the world_rank variable to 3 so it can 
+accomodate all the rankings. Print top 100 universities of 2015 from the
+dataset of CWUR. 
 */
 
-
-*sort the data ascending order of world rank;
-/*----
-proc sort data=shanghaiData_raw_sorted out=sorted_CWUR_Times;
-	by world_rank;
-run;
-*/
-
-
-* change length of world_rank from 1 to 3 characters ;
+ 
+*Change length of world_rank variable from 1 to 3;
 
 data cwurData_raw_sorted;
-length world_rank $4;
+length world_rank $3;
 set cwurData_raw_sorted;
 run;
 
 /*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
 
+
 /*
 proc contents data=cwurData_raw_sorted;
 run;
 */
+
 
 * print records for top 100 universities ;
 proc print data=cwurData_raw_sorted (obs=100);
@@ -92,6 +88,7 @@ run;
 
 title;
 footnote;
+
 
 
 *******************************************************************************;
@@ -106,18 +103,19 @@ title2
 ;
 
 footnote1
-"Observation 1 : "
+"Observation 1 : From the output, the Universities can analyze their score position for each year and see if they fall under High, Medium or Low rankings."
 ;
 footnote2
-"Observation 2 : "
+"Observation 2 : As an example, California Institute of Technology University's total_score over the years from 94.8 in 2012 to 95.2 in 2016. Based on these results universities can work on their scores over the years and make their ranking consistent."
 ;
 
 /*
 Methodology: Used Proc Format to distribute the world rankings in three 
-categories of high, medium and low. Then use Proc Means to calculate
-minimum and maximum of total_score arranged in the bins of world_rank
-and print them.
+categories of high, medium and low. Change the length of world_rank 
+variable to accommodate all rankings. Then used proc print to print the
+results dividing them in categories of year and ranks.
 */
+
 
 *proc format to put world ranks in bins and print them;
 proc format;	
@@ -128,63 +126,72 @@ proc format;
 	;
 run;
 
-* OPTIONAL: Print the above results ;
+
+* change length of world_rank from 1 to 3 characters ;
+data CWUR_Times_analytic_file; 
+length world_rank $3;
+set CWUR_Times_analytic_file; 
+run;
+
+
+* Print the above results ;
 proc print 
-	data=CWUR_Shanghai_analytic_file;	
-	format UniversityWorldRanking $world_rank.;
+	data=CWUR_Times_analytic_file; *cwurData_raw_sorted; *CWUR_Times_analytic_file; *CWUR_Shanghai_analytic_file; 
+	var world_rank university_name country total_score year;
+	*where year=2015;	
+	format world_rank $world_rank.;
+	BY NOTSORTED world_rank year;
 run;
 
-/* Calculate the Min and Max values for scores using formatted rankings and 
-print them to analyze the range*/
-proc means 
-	data=CWUR_Shanghai_analytic_file min max range;	
-	var total_score university_name year world_rank;	
-	format UniversityWorldRanking $world_rank.;	
-	output out=by_rank_score;
-run;
-
-proc print data=by_rank_score;
-run;
 
 title;
 footnote;
+
+
 
 *******************************************************************************;
 ************************Research Question 3************************************;
 *******************************************************************************;
 
 title1
-"Research Question 3. Does the % of publications done by the students correlates with the Alumni Employment %?"
+"Research Question 3. Does the citations done by the students in a University correlates with the quality of faculty?"
 ;
 title2
-"Rationale: This data can be useful for the students to identify to what extent being a part of a publication helps in getting a job. "
+"Rationale: This data can be useful identify that quality of teaching results in more citations or not. "
 ;
 
 footnote1
-"Observation 1 : From the results it can be noticed that the alumni employment rate shows an increase with the number of publications. "
+"Observation 1 : From the results it can be noticed that the qulaity of faculty has not much impact on the number of citations. "
 ;
 footnote2
-"Observation 2 : Going further, more analysis would be required to conclude which all factors determine alumni employment % rather than just the publications rate. "
+"Observation 2 :  We can not specify on the rating of quality of faculty that leads to higher or lower citations as the mean varies. "
 ;
 
 /*
-Methodology:Proc Freq to create cross-tab of three variables to see
-correlation between them.
-*/
+Methodology:Proc Summary to display the output and correlation of
+quality of faculty and citations of Universities.
+*/ 
 
-proc summary data=CWUR_Shanghai_analytic_file print;
-	var alumni publications;
-	class publications;
-output out=alum_pub
-	mean=AvgAlumni;
+proc summary data=CWUR_Times_analytic_file print;
+	var quality_of_faculty citations ;
+	class university_name;
+	output out=cit_fac
+	mean=AvgQuality AvgCitations;
+	where country='United States of Ame';
 run;
 
 /*
-proc freq 
-	data=cwurData_raw_sorted;
-	Table 
-	    alumni*publications*university_name / norow nocol;
+proc sort data=CWUR_Times_analytic_file;
+	by university_name;
 run;
+
+proc freq 
+	data=CWUR_Times_analytic_file;
+	Table 
+	    citations*quality_of_faculty / norow nocol;
+	
+	where country='United States of Ame' AND year=2015;
+run
 */
 
 title;
