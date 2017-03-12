@@ -38,7 +38,8 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
-************************MF Research Questions ***********************************
+************************MF Research Questions ***********************************;
+
 title1
 "Research Question 1: Analyze which are top 5 countries have highest total_score universities every year?"
 ;
@@ -67,7 +68,7 @@ run;
 proc print data=CWUR_Times_analytic_sorted;
   var year world_rank country university_name total_score;
   where year=2016;
- run;
+run;
 
 title;
 footnote;
@@ -92,12 +93,12 @@ Methodology:
  Use class statement to categorize data for and world_rank year.
 */
 proc means data=CWUR_Times_analytic_file;
-var world_rank university_name year;
-class world_rank year;
+  var world_rank university_name year;
+  class world_rank year;
 run;
 
 proc print data=CWUR_Times_analytic_file;
-var world_rank university_name year;
+  var world_rank university_name year;
 run;
 
 
