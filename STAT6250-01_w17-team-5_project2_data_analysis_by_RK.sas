@@ -50,40 +50,45 @@ title2
 ;
 
 footnote1
-"Observation 1: "
+"Observation 1: From the results it is clear that almost all countries have secured a place in top 100 universities which include USA, Australia, UK, Japan, France, etc. "
 ;
 footnote2
-"Observation 2: "
+"Observation 2: Another observation is that USA is the highest country with the best ranking universities in top 100"
 
 /*
-Methodology: Sorted the data from CWUR and Shanghai sources in ascending order of 
-world rank. Print top 100 universities of 2015 from the sorted result. Next print
-only the countries of the top 100 universities in order to see which countries 
-performed the best.
+Methodology: Changed the length of the world_rank variable to 3 so it can accomodate
+all the rankings. Print top 100 universities of 2015 from the dataset of CWUR. 
 */
 
-*sort the data in ascending order of world rank ;
-proc sort data=CWUR_Shanghai_analytic_file out=sorted_CWUR_Shanghai;
-	BY world_rank;
+
+*sort the data ascending order of world rank;
+/*----
+proc sort data=shanghaiData_raw_sorted out=sorted_CWUR_Times;
+	by world_rank;
 run;
+*/
+
 
 * change length of world_rank from 1 to 3 characters ;
-data sorted_CWUR_Shanghai;
-length world_rank $3;
+
+data cwurData_raw_sorted;
+length world_rank $4;
+set cwurData_raw_sorted;
 run;
 
+/*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
+
 /*
-proc contents data=sorted_CWUR_Shanghai;
+proc contents data=cwurData_raw_sorted;
 run;
 */
 
 * print records for top 100 universities ;
-proc print data=sorted_CWUR_Shanghai (obs=100);
+proc print data=cwurData_raw_sorted (obs=100);
 	var world_rank university_name country year;
 	where year=2015;
 run;
 
-*print only the countries of top 100 universities;
 
 title;
 footnote;
