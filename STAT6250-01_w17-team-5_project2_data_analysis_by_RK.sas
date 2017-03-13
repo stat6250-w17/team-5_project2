@@ -61,23 +61,11 @@ Methodology: Changed the length of the world_rank variable to 3 so it can
 accomodate all the rankings. Print top 100 universities of 2015 from the
 dataset of CWUR. 
 */
-
  
-*Change length of world_rank variable from 1 to 3;
-
-data cwurData_raw_sorted;
-length world_rank $3;
-set cwurData_raw_sorted;
-run;
-
-/*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
-
-
 /*
 proc contents data=cwurData_raw_sorted;
 run;
 */
-
 
 * print records for top 100 universities ;
 proc print data=cwurData_raw_sorted (obs=100);
@@ -85,11 +73,8 @@ proc print data=cwurData_raw_sorted (obs=100);
 	where year=2015;
 run;
 
-
 title;
 footnote;
-
-
 
 *******************************************************************************;
 ************************Research Question 2************************************;
@@ -115,17 +100,6 @@ categories of high, medium and low. Change the length of world_rank
 variable to accommodate all rankings. Then used proc print to print the
 results dividing them in categories of year and ranks.
 */
-
-
-*proc format to put world ranks in bins and print them;
-proc format;	
-	value $world_rank		
-	low-100="HIGH"		
-	101-400="MEDIUM"		
-	401-high="LOW"	
-	;
-run;
-
 
 * change length of world_rank from 1 to 3 characters ;
 data CWUR_Times_analytic_file; 
