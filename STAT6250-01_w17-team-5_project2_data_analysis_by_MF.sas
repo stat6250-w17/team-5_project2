@@ -51,7 +51,7 @@ title2
 footnote1
 "Observation 1: The output shows the universities and country with the highest total score for the year 2016"
 ;
-footnote1
+footnote2
 "Observation 2: The world rank for the respective universities is also displayed, so we can corelate the world ranking with the total score."
 ;
 /*
@@ -71,7 +71,7 @@ title;
 footnote;
 
 title1
-"Research Question: Which universities have a consistent ranking over the years?"
+"Research Question 2: Which universities have a consistent ranking over the years?"
 ;
 title2
 "Rationale: This analysis will help understand which universities are consistent in maintaining their education system and provide a better education. This analysis will also help identify the goals of the universities."
@@ -80,7 +80,7 @@ title2
 footnote1
 "Observation 1: The results display the world rank for the universities with respect to the parrticular year"
 ;
-footnote1
+footnote2
 "Observation 2: The results show that the California Institute of Technology has world rank =1 consistenly for year 2012 to 2016. Harvard university has world rank =2 consistently for year 2012 2014 2015.. "
 ;
 /*
@@ -112,7 +112,7 @@ footnote;
 
 
 title1
-"Research Question: Analyze top ranking universities in attributes of teaching, research, citations, international, income?"
+"Research Question 3: Analyze top ranking universities in attributes of teaching, research, citations, international, income?"
 ;
 
 title2
@@ -122,7 +122,7 @@ title2
 footnote1
 "Observation 1: The results display the mean, std. deviation, minimum, maximum values for the attributes that are used as variables teaching, research, citations, international, income "
 ;
-footnote1
+footnote2
 "Observation 2: It can be inferred form the results that the highest rranking university California Institute of Technology has highest mean, lowest std deviation for its attributes. Also the minimum and maximum values for the attributes can be compared with other universities to anlayze the quality of education."
 ;
 /*
