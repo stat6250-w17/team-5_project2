@@ -38,7 +38,6 @@ relative file import path to the current directory, if using Windows;
 %mend;
 %setup;
 
-
 *******************************************************************************;
 ************************Research Question 1************************************;
 *******************************************************************************;
@@ -61,7 +60,7 @@ Methodology: Changed the length of the world_rank variable to 3 so it can
 accomodate all the rankings. Print top 100 universities of 2015 from the
 dataset of CWUR. 
 */
- 
+
 /*
 proc contents data=cwurData_raw_sorted;
 run;
@@ -101,14 +100,7 @@ variable to accommodate all rankings. Then used proc print to print the
 results dividing them in categories of year and ranks.
 */
 
-* change length of world_rank from 1 to 3 characters ;
-data CWUR_Times_analytic_file; 
-length world_rank $3;
-set CWUR_Times_analytic_file; 
-run;
-
-
-* Print the above results ;
+* Print the results ;
 proc print 
 	data=CWUR_Times_analytic_file; *cwurData_raw_sorted; *CWUR_Times_analytic_file; *CWUR_Shanghai_analytic_file; 
 	var world_rank university_name country total_score year;
@@ -117,11 +109,8 @@ proc print
 	BY NOTSORTED world_rank year;
 run;
 
-
 title;
 footnote;
-
-
 
 *******************************************************************************;
 ************************Research Question 3************************************;
@@ -158,7 +147,6 @@ run;
 proc sort data=CWUR_Times_analytic_file;
 	by university_name;
 run;
-
 proc freq 
 	data=CWUR_Times_analytic_file;
 	Table 
