@@ -167,9 +167,19 @@ proc sort
     	;
 run;
 
-* build analytic dataset from sorted datasets with the 
+
+/* RK Research Question 1
+Change length of world_rank variable from 1 to 3 characters*/
+data cwurData_raw_sorted;
+	length world_rank $3;
+	set cwurData_raw_sorted;
+run;
+/*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
+
+
+/* build analytic dataset from sorted datasets with the 
 least number of columns and minimal cleaning/transformation needed to address 
-research questions in corresponding data-analysis files;
+research questions in corresponding data-analysis files */
 data Shanghai_analytic;
 	keep 
 		world_rank
@@ -202,16 +212,16 @@ data TimeData_analytic;
 		;
 run;
 
-*Converting world_rank variable type from numeric to character;
 
+*Converting world_rank variable type from numeric to character;
 data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
 set cwurData_raw_sorted;
 world_rank_char=put(world_rank, 1.);
 drop world_rank;
 run;
 
-*Converting national_rank variable type from numeric to character;
 
+*Converting national_rank variable type from numeric to character;
 data cwurData_raw_sorted(rename=(national_rank_char=national_rank));
 set cwurData_raw_sorted;
 national_rank_char=put(national_rank, 1.);
@@ -220,7 +230,6 @@ run;
 
 
 *Combining datasets CWUR and ShanghaiData vertically;
-
 data CWUR_Shanghai_Data;
 	set cwurData_raw_sorted shanghaiData_raw_sorted;
 run;
@@ -228,8 +237,8 @@ run;
 proc print data=CWUR_Shanghai_Data noobs;
 run;
 
-*Combining datasets CWUR and ShanghaiData horizontally;
 
+*Combining datasets CWUR and ShanghaiData horizontally;
 data CWUR_Times_Data;
    merge cwurData_raw_sorted timesData_raw_sorted;
    by world_rank;
@@ -296,4 +305,21 @@ retain
     set 
 		CWUR_Times_Data
 	;
+run;
+
+/* RK Research Question 2
+proc format to put world ranks in bins and print them */
+proc format;	
+	value $world_rank		
+	low-100="HIGH"		
+	101-400="MEDIUM"		
+	401-high="LOW"	
+	;
+run;
+
+/* RK Research Question 2
+change length of world_rank from 1 to 3 characters */
+data CWUR_Times_analytic_file; 
+	length world_rank $3;
+	set CWUR_Times_analytic_file; 
 run;
