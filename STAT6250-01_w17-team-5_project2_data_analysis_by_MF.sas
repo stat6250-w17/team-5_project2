@@ -61,9 +61,6 @@ Methodology:
  Use where statement to display the data for year 2016.
  Use class statement to categorize data for years.
 */
-proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
-  by descending total_score;  
-run;
 
 proc print data=CWUR_Times_analytic_sorted;
   var year world_rank country university_name total_score;
