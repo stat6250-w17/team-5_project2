@@ -2,13 +2,15 @@
 **************** 80-character banner for column width reference ***************;
 * (set window width to banner width to calibrate line length to 80 characters *;
 *******************************************************************************;
-
+*IL: linebreaks should be used to create paragraphs in comment blocks, as below;
 *
 This file uses the following analytic dataset to address several research
 questions regarding Worlds University Ranking trends over the years
+
 Dataset Name: world_rank_analytic_file created in external file
 STAT6250-01_w17-team-5_project2_data_preparation.sas, which is assumed to be
 in the same directory as this file
+
 See included file for dataset properties
 ;
 
@@ -23,18 +25,18 @@ relative file import path to the current directory, if using Windows;
 
 %macro setup;
 %if
-	&SYSSCP. = WIN
+    &SYSSCP. = WIN
 %then
-	%do;
-		X 
-		"cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))"""
-		;			
-		%include ".\&dataPrepFileName.";
-	%end;
+    %do;
+        X 
+        "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))"""
+        ;           
+        %include ".\&dataPrepFileName.";
+    %end;
 %else
-	%do;
-		%include "~/&sasUEFilePrefix./&dataPrepFileName.";
-	%end;
+    %do;
+        %include "~/&sasUEFilePrefix./&dataPrepFileName.";
+    %end;
 %mend;
 %setup;
 
@@ -59,8 +61,8 @@ footnote2
 Methodology: Changed the length of the world_rank variable to 3 so it can 
 accomodate all the rankings. Print top 100 universities of 2015 from the
 dataset of CWUR. 
-*/
-
+*/;
+*IL: unused code should be deleted;
 /*
 proc contents data=cwurData_raw_sorted;
 run;
@@ -68,8 +70,8 @@ run;
 
 * print records for top 100 universities ;
 proc print data=cwurData_raw_sorted (obs=100);
-	var world_rank university_name country year;
-	where year=2015;
+    var world_rank university_name country year;
+    where year=2015;
 run;
 
 title;
@@ -102,11 +104,11 @@ results dividing them in categories of year and ranks.
 
 * Print the results ;
 proc print 
-	data=CWUR_Times_analytic_file; *cwurData_raw_sorted; *CWUR_Times_analytic_file; *CWUR_Shanghai_analytic_file; 
-	var world_rank university_name country total_score year;
-	*where year=2015;	
-	format world_rank $world_rank.;
-	BY NOTSORTED world_rank year;
+    data=CWUR_Times_analytic_file; *cwurData_raw_sorted; *CWUR_Times_analytic_file; *CWUR_Shanghai_analytic_file; 
+    var world_rank university_name country total_score year;
+    *where year=2015;   
+    format world_rank $world_rank.;
+    BY NOTSORTED world_rank year;
 run;
 
 title;
@@ -136,23 +138,23 @@ quality of faculty and citations of Universities.
 */ 
 
 proc summary data=CWUR_Times_analytic_file print;
-	var quality_of_faculty citations ;
-	class university_name;
-	output out=cit_fac
-	mean=AvgQuality AvgCitations;
-	where country='United States of Ame';
+    var quality_of_faculty citations ;
+    class university_name;
+    output out=cit_fac
+    mean=AvgQuality AvgCitations;
+    where country='United States of Ame';
 run;
 
 /*
 proc sort data=CWUR_Times_analytic_file;
-	by university_name;
+    by university_name;
 run;
 proc freq 
-	data=CWUR_Times_analytic_file;
-	Table 
-	    citations*quality_of_faculty / norow nocol;
-	
-	where country='United States of Ame' AND year=2015;
+    data=CWUR_Times_analytic_file;
+    Table 
+        citations*quality_of_faculty / norow nocol;
+    
+    where country='United States of Ame' AND year=2015;
 run
 */
 
