@@ -66,13 +66,7 @@ such as correlation and linear regression plots were used to anser this question
 proc corr data=TimeData_analytic nomiss 
   plots=scatter;
   var total_score student_staff_ratio ;
-  title "Is there a correlation between University's highest total_score and student to staff ratio?" ;
 run;
-proc reg data=TimeData_analytic;
-    model total_score = student_staff_ratio ;
-run;
-quit;
-
 title;
 footnote;
 *******************************************************************************
@@ -100,13 +94,8 @@ such as correlation and linear regression plots were used used to answer this qu
 proc corr data=Shanghai_analytic nomiss
 	plots=scatter(alpha=.05 .01);
  	var total_score award ;
-	title "Correlation between university's highest total_score and award ";
 run;
 
-proc reg data=Shanghai_analytic;
-    model total_score = award;
-run;
-quit;
 
 title;
 footnote;
@@ -135,26 +124,13 @@ Later once most contributing variables were determined. Data plotting techniques
 such as correlation,linear regression, and sgsscatter plots were used to answer this question.
 */
 ;
-proc corr data=Shanghai_analytic nomiss 
-  plots=scatter;
-  var total_score publications;
-  title "Correlation between university's highest total_score and award" ;
-run;
-
-proc reg data=Shanghai_analytic;
-    model total_score = publications;
-run;
-quit;
-
 proc sgscatter data=Shanghai_analytic;
      matrix award publications hici alumni total_score/diagonal = (histogram); 
-     title "Histogram showing university's highest total_score and award";
 run;
 
 proc corr data=Shanghai_analytic nomiss 
   plots=scatter(alpha=.05 .01);
   var total_score award hici alumni publications;
-  title "Correlation between university's highest total_score and award" ;
 run;
 
 proc sgscatter data=Shanghai_analytic;
