@@ -56,7 +56,6 @@ https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xl
 %let inputDataset3DSN = shanghaiData_raw;
 
 
-
 * load raw datasets over the wire, if they doesn't already exist;
 %macro loadDataIfNotAlreadyAvailable(dsn,url,filetype);
     %put &=dsn;
@@ -107,6 +106,7 @@ https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xl
 * sort and check raw datasets for duplicates with respect to their unique ids,
   removing blank rows, if needed;
 *IL: semicolons should be indented one less level, as below;
+*RK: Done;
 proc sort
         nodupkey
         data=cwurData_raw
@@ -125,12 +125,12 @@ proc sort
         data=timesData_raw
         dupout=timesData_raw_dups
         out=timesData_raw_sorted
-        ;
+    ;
     by
         world_rank
         university_name
         year
-        ;
+    ;
 run;
 
 proc sort
@@ -138,25 +138,38 @@ proc sort
         data=shanghaiData_raw
         dupout=shanghaiData_raw_dups
         out=shanghaiData_raw_sorted
-        ;
+    ;
     by
         world_rank
-    university_name
+        university_name
         year
-        ;
+    ;
 run;
 
 
-proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
-  by descending total_score;  
+proc sort 
+     data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+     by descending total_score;  
 run;
 
+*IL: formats should be created starting around line 57 above;
+*RK: 57 or 157?;
+/* RK Research Question 2
+proc format to put world ranks in bins and print them */
+proc format;    
+    value $world_rank       
+    low-100="HIGH"      
+    101-400="MEDIUM"        
+    401-high="LOW"  
+    ;
+run;
 
 
 * build analytic dataset from sorted datasets with the 
 least number of columns and minimal cleaning/transformation needed to address 
 research questions in corresponding data-analysis files;
 *IL: several variables listed below have invalid names, per the log when run;
+*RK: Pending;
 data Shanghai_analytic;
     keep 
         world_rank
@@ -167,10 +180,10 @@ data Shanghai_analytic;
         alumni
         hici
         publications
-        ;
-        set 
+    ;
+    set 
         shanghaiData_raw_sorted
-        ;
+    ;
 run;
 
 * build analytic dataset from sorted datasets with the 
@@ -183,31 +196,32 @@ data TimeData_analytic;
         year
         total_score 
         student_staff_ratio
-        ;
-        set 
+    ;
+    set 
         timesData_raw_sorted
-        ;
+    ;
 run;
 
 
 *IL: up until this point, your indentation is good. please rework the code below
      to match the indentation style above, in order to make the code easier to
      follow;
+*RK: Done;
 
 *Converting world_rank variable type from numeric to character;
 *IL: use best12. instead of 1. to convert from character to integer;
 data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
-set cwurData_raw_sorted;
-world_rank_char=put(world_rank, best12.);
-drop world_rank;
+     set cwurData_raw_sorted;
+     world_rank_char=put(world_rank, best12.);
+     drop world_rank;
 run;
 
 *Converting national_rank variable type from numeric to character;
 *IL: the format in the drop-and-swap below should also be corrected;
 data cwurData_raw_sorted(rename=(national_rank_char=national_rank));
-set cwurData_raw_sorted;
-national_rank_char=put(national_rank, 1.);
-drop national_rank;
+     set cwurData_raw_sorted;
+     national_rank_char=put(national_rank,best12.);
+     drop national_rank;
 run;
 
 
@@ -236,21 +250,21 @@ research questions in corresponding data-analysis files;
 data CWUR_Shanghai_analytic_file;
     retain
         world_rank
-    university_name
-    country
-    alumni
-    publications
-    total_score
-    year      
+        university_name
+        country
+        alumni
+        publications
+        total_score
+        year      
     ;
     keep
         world_rank
-    university_name
-    country
-    alumni
-    publications
-    total_score
-    year
+        university_name
+        country
+        alumni
+       publications
+       total_score
+       year
     ;
     set 
         CWUR_Shanghai_Data
@@ -261,35 +275,37 @@ run;
 least number of columns and minimal cleaning/transformation needed to address 
 research questions in corresponding data-analysis files;
 data CWUR_Times_analytic_file;
-retain
+     retain
         world_rank
-    university_name
-    country
+        university_name
+        country
         total_score 
-    quality_of_faculty
-    research
-    citations
-    international
-    income
+        quality_of_faculty
+        research
+        citations
+        international
+        income
         year
     ;
     keep
-    world_rank
-    university_name
-    country
+        world_rank
+        university_name
+        country
         total_score 
-    quality_of_faculty
-    research
-    citations
-    international
-    income
+        quality_of_faculty
+        research
+        citations
+        international
+        income
         year
     ;
     set 
         CWUR_Times_Data
     ;
 run;
+
 *IL: the dataset below should be unnecessary after the drop-and-swaps are fixed;
+*RK: Pending;
 /*RK Research Question 1;*/
 *Change length of world_rank variable from 1 to 3 characters;
 data cwurData_raw_sorted;
@@ -298,18 +314,8 @@ data cwurData_raw_sorted;
 run;
 /*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
 
-*IL: formats should be created starting around line 57 above;
-/* RK Research Question 2
-proc format to put world ranks in bins and print them */
-proc format;    
-    value $world_rank       
-    low-100="HIGH"      
-    101-400="MEDIUM"        
-    401-high="LOW"  
-    ;
-run;
-
 *IL: the dataset below should be unnecessary after the drop-and-swaps are fixed;
+*RK: Pending;
 /* RK Research Question 2
 change length of world_rank from 1 to 3 characters */
 data CWUR_Times_analytic_file; 
