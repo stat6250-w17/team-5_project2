@@ -71,7 +71,7 @@ https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xl
 %let inputDataset2DSN = timesData_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xls?raw=true
+https://github.com/stat6250/team-5_project2/blob/master/data/shanghaiData-edited.xls?raw=true
 ;
 %let inputDataset3Type = XLS;
 %let inputDataset3DSN = shanghaiData_raw;
