@@ -134,7 +134,8 @@ proc corr data=Shanghai_analytic nomiss
 run;
 
 proc sgscatter data=Shanghai_analytic;
-     compare x=total_score y=(publications hici alumni award);  
+  compare x=total_score y=(publications hici alumni award);  
 run;
+
 title;
 footnote;
