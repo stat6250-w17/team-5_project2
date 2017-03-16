@@ -147,11 +147,6 @@ proc sort
 run;
 
 
-proc sort 
-     data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
-     by descending total_score;  
-run;
-
 *IL: formats should be created starting around line 57 above;
 *RK: 57 or 157?;
 /* RK Research Question 2
@@ -304,21 +299,33 @@ data CWUR_Times_analytic_file;
     ;
 run;
 
+proc sort 
+     data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+     by descending total_score;  
+run;
+
+
 *IL: the dataset below should be unnecessary after the drop-and-swaps are fixed;
-*RK: Pending;
+*RK: Done;
+
 /*RK Research Question 1;*/
 *Change length of world_rank variable from 1 to 3 characters;
+/*
 data cwurData_raw_sorted;
     length world_rank $3;
     set cwurData_raw_sorted;
 run;
+*/
 /*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
 
 *IL: the dataset below should be unnecessary after the drop-and-swaps are fixed;
-*RK: Pending;
+*RK: Done;
+
 /* RK Research Question 2
 change length of world_rank from 1 to 3 characters */
+/*
 data CWUR_Times_analytic_file; 
     length world_rank $3;
     set CWUR_Times_analytic_file; 
 run;
+*/
