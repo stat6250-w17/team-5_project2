@@ -154,10 +154,6 @@ proc format;
     ;
 run;
 
-proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
-  by descending total_score;  
-run;
-
 
 
 * build analytic dataset from sorted datasets with the 
@@ -194,6 +190,8 @@ data TimeData_analytic;
 		timesData_raw_sorted
 	;
 run;
+
+
 
 *Converting world_rank variable type from numeric to character;
 data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
@@ -285,6 +283,10 @@ retain
     set 
 	CWUR_Times_Data
     ;
+run;
+
+proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+  by descending total_score;  
 run;
 
 /*RK Research Question 1;*/
