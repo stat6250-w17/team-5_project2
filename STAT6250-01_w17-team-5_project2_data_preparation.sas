@@ -48,7 +48,7 @@ https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xl
 %let inputDataset2DSN = timesData_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-5_project2/blob/master/data/timesData-edited.xls?raw=true
+https://github.com/stat6250/team-5_project2/blob/master/data/shanghaiData-edited.xls?raw=true
 ;
 %let inputDataset3Type = XLS;
 %let inputDataset3DSN = shanghaiData_raw;
@@ -110,12 +110,12 @@ proc sort
         data=cwurData_raw
         dupout=cwurData_raw_dups
         out=cwurData_raw_sorted
-    	;
+    ;
     by
         world_rank
         university_name
         year
-    	;
+    ;
 run;
 
 proc sort
@@ -123,12 +123,12 @@ proc sort
         data=timesData_raw
         dupout=timesData_raw_dups
         out=timesData_raw_sorted
-    	;
+    ;
     by
         world_rank
         university_name
         year
-    	;
+    ;
 run;
 
 proc sort
@@ -136,12 +136,20 @@ proc sort
         data=shanghaiData_raw
         dupout=shanghaiData_raw_dups
         out=shanghaiData_raw_sorted
-    	;
+    ;
     by
         world_rank
 	university_name
      	year
-    	;
+    ;
+/* RK Research Question 2
+proc format to put world ranks in bins and print them */
+proc format;    
+    value $world_rank       
+    low-100="HIGH"      
+    101-400="MEDIUM"        
+    401-high="LOW"  
+    ;
 run;
 
 
@@ -158,10 +166,10 @@ data Shanghai_analytic;
 		alumni
 		hici
 		publications
-		;
+	;
     	set 
 		shanghaiData_raw_sorted
-		;
+	;
 run;
 
 * build analytic dataset from sorted datasets with the 
@@ -174,31 +182,30 @@ data TimeData_analytic;
 		year
 		total_score 
 		student_staff_ratio
-		;
+	;
     	set 
 		timesData_raw_sorted
-		;
+	;
 run;
 
-*Converting world_rank variable type from numeric to character;
 
+
+*Converting world_rank variable type from numeric to character;
 data cwurData_raw_sorted(rename=(world_rank_char=world_rank));
-set cwurData_raw_sorted;
-world_rank_char=put(world_rank, 1.);
-drop world_rank;
+	set cwurData_raw_sorted;
+	world_rank_char=put(world_rank, best12.);
+	drop world_rank;
 run;
 
 *Converting national_rank variable type from numeric to character;
-
 data cwurData_raw_sorted(rename=(national_rank_char=national_rank));
-set cwurData_raw_sorted;
-national_rank_char=put(national_rank, 1.);
-drop national_rank;
+	set cwurData_raw_sorted;
+	national_rank_char=put(national_rank, best12.);
+	drop national_rank;
 run;
 
 
 *Combining datasets CWUR and ShanghaiData vertically;
-
 data CWUR_Shanghai_Data;
 	set cwurData_raw_sorted shanghaiData_raw_sorted;
 run;
@@ -207,10 +214,9 @@ run;
 *run;
 
 *Combining datasets CWUR and ShanghaiData horizontally;
-
 data CWUR_Times_Data;
-   merge cwurData_raw_sorted timesData_raw_sorted;
-   by world_rank;
+	merge cwurData_raw_sorted timesData_raw_sorted;
+	by world_rank;
 run;
 
 *proc print data=CWUR_Times_Data noobs;
@@ -239,8 +245,8 @@ data CWUR_Shanghai_analytic_file;
 	year
     ;
     set 
-		CWUR_Shanghai_Data
-	;
+	CWUR_Shanghai_Data
+    ;
 run;
 
 * build analytic dataset from horizontally merged sorted datasets with the 
@@ -272,8 +278,12 @@ retain
       	year
     ;
     set 
-		CWUR_Times_Data
-	;
+	CWUR_Times_Data
+    ;
+run;
+
+proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+  by descending total_score;  
 run;
 
 proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
@@ -282,26 +292,19 @@ run;
 
 /*RK Research Question 1;*/
 *Change length of world_rank variable from 1 to 3 characters;
+/*
 data cwurData_raw_sorted;
 	length world_rank $3;
 	set cwurData_raw_sorted;
 run;
+*/
 /*ERROR in log: BY variables are not properly sorted on data set WORK.CWURDATA_RAW_SORTED. */
-
-
-/* RK Research Question 2
-proc format to put world ranks in bins and print them */
-proc format;	
-	value $world_rank		
-	low-100="HIGH"		
-	101-400="MEDIUM"		
-	401-high="LOW"	
-	;
-run;
 
 /* RK Research Question 2
 change length of world_rank from 1 to 3 characters */
+/*
 data CWUR_Times_analytic_file; 
 	length world_rank $3;
 	set CWUR_Times_analytic_file; 
 run;
+*/
