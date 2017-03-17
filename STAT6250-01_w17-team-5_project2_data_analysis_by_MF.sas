@@ -90,7 +90,7 @@ Methodology:
  Use class statement to categorize data for and world_rank year.
 */
 proc means data=CWUR_Times_analytic_file;
-  var world_rank university_name year;
+  *var world_rank university_name year;
   class world_rank year;
 run;
 
