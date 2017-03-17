@@ -145,12 +145,6 @@ proc sort
 run;
 
 
-proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
-  by descending total_score;  
-run;
-
-
-
 * build analytic dataset from sorted datasets with the 
 least number of columns and minimal cleaning/transformation needed to address 
 research questions in corresponding data-analysis files;
@@ -280,6 +274,10 @@ retain
     set 
 		CWUR_Times_Data
 	;
+run;
+
+proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+  by descending total_score;  
 run;
 
 /*RK Research Question 1;*/
