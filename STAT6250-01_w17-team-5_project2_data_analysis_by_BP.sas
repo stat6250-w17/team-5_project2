@@ -55,7 +55,7 @@ footnote1
 "Observation1: Correlation plots reveal there are no strong correlations between highest total_score and student to staff ratio."
 ;
 footnote2
-"Observation2: Correlation plot indicates 25% correlation between Total_score and student to staff ratio. Linear Regression plots shows not a strong coefficient of determination value(6.50%)."
+"Observation2: Correlation plot indicates 25% correlation between Total_score and student to staff ratio. Linear Regression plots shows not a strong coefficient of determination value(6.50%) and also exhibited Logistic regression responses, thus I removed the linear plots from the code. For future work will add logistic regression."
 ;
 */
 Methodology: Initially, proc print was used to evaluate overall raw data. 
@@ -83,7 +83,7 @@ footnote1
 "Observation1: Yes, various plots indicated that there is a very strong correlation between total_score and Award, hici and Award, and award and Alumini, respectively."
 ;
 footnote2
-"Observation2: Correlation plot indicates 83.20% correlation between Total_score and student being awarded highest honorary awards. Linear Regression plots shows a strong coefficient of determination value (69.20%)."
+"Observation2: Correlation plot indicates 83.20% correlation between Total_score and student being awarded highest honorary awards. Linear Regression plots shows a strong coefficient of determination value (69.20%) and also exhibited Logistic regression responses, thus I removed the linear plots from the code. For future work will add logistic regression"
 ;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
@@ -116,7 +116,7 @@ footnote2
 "Observation2: Correlation plot indicates 87.10% correlation between Total_score and hici, 83.2% between Total_score and awards, 76.92 between total_score and alumni. Linear Regression plots shows 69.20% adjusted RSquare (indicates linearly fitted)."
 ;
 footnote3
-"Observation3: Correlation plot indicates 62% correlation between Total_score and publication. Linear Regression indicates 39.3% adjusted Rsquare."
+"Observation3: Correlation plot indicates 62% correlation between Total_score and publication. Linear Regression indicates 39.3% adjusted Rsquare andnd also exhibited Logistic regression responses, thus I removed the linear plots from the code. For future work will add logistic regression."
 ;
 */
 Methodology: Initially, proc print was used to evalauate overall raw data. 
