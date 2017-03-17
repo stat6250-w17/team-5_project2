@@ -142,8 +142,6 @@ proc sort
 	university_name
      	year
     ;
-run;
-
 /* RK Research Question 2
 proc format to put world ranks in bins and print them */
 proc format;    
@@ -153,7 +151,6 @@ proc format;
     401-high="LOW"  
     ;
 run;
-
 
 
 * build analytic dataset from sorted datasets with the 
@@ -283,6 +280,10 @@ retain
     set 
 	CWUR_Times_Data
     ;
+run;
+
+proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
+  by descending total_score;  
 run;
 
 proc sort data=CWUR_Times_analytic_file out=CWUR_Times_analytic_sorted;
